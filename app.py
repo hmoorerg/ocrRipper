@@ -1,5 +1,5 @@
 from flask import Flask,flash,jsonify,redirect,url_for, request, render_template,send_from_directory
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
 import base64
 from google.cloud import vision
 import json
@@ -7,12 +7,12 @@ import json
 client = vision.ImageAnnotatorClient()
 
 
+data = {}
+
 @app.route("/")
 def index():
-    return send_from_directory("public","index.html")
+    return  send_from_directory("static","index.html")
 
-
-data = {}
 
 @app.route("/clear")
 def clear():
